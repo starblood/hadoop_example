@@ -8,6 +8,13 @@ import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.*;
 import org.apache.hadoop.mapreduce.lib.output.*;
 
+/*
+    TODO: 1. 컴바이너 적용하기
+    TODO: 2. 카운터를 적용하여 총 단어 수와 유일한 단어 수를 계산하기
+    TODO: 3. 리듀스 태스크의 수를 2개로 지정하기
+    TODO: 4. 출력 포맷으로 SequenceFileOutputFormat 을 사용하기
+    TODO: 5. 최종결과 파일을 HDFS에서 로컬 파일 시스템으로 다운로드하여 내용보기
+ */
 public class WordCount {
 
     public static class MyMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
