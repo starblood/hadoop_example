@@ -53,6 +53,8 @@ public class WordCount {
         job.setMapperClass(MyMapper.class);
         job.setReducerClass(MyReducer.class);
 
+        job.setCombinerClass(MyReducer.class);
+
         // if mapper outputs are different, call setMapOutputKeyClass and setMapOutputValueClass
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
