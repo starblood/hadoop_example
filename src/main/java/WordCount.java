@@ -42,8 +42,8 @@ public class WordCount {
             }
             sumWritable.set(sum);
 
-            context.getCounter("CustomCounter", "unique").increment(1);
-            context.getCounter("CustomCounter", "total").increment(sum);
+            context.getCounter("WordStat", "number of unique words").increment(1);
+            context.getCounter("WordStat", "number of total words").increment(sum);
 
             context.write(key, sumWritable);
         }
@@ -58,6 +58,8 @@ public class WordCount {
         job.setReducerClass(MyReducer.class);
 
         job.setCombinerClass(MyReducer.class);
+
+        job.setNumReduceTasks(2); // set number of reduce tasks
 
         // if mapper outputs are different, call setMapOutputKeyClass and setMapOutputValueClass
         job.setOutputKeyClass(Text.class);
