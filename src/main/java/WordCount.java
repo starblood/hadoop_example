@@ -41,6 +41,10 @@ public class WordCount {
                 sum += val.get();
             }
             sumWritable.set(sum);
+
+            context.getCounter("CustomCounter", "unique").increment(1);
+            context.getCounter("CustomCounter", "total").increment(sum);
+
             context.write(key, sumWritable);
         }
     }
