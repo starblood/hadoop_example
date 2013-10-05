@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.output.*;
     TODO: 2. 카운터를 적용하여 총 단어 수와 유일한 단어 수를 계산하기
     TODO: 3. 리듀스 태스크의 수를 2개로 지정하기
     TODO: 4. 출력 포맷으로 SequenceFileOutputFormat 을 사용하기
-    TODO: 5. 최종결과 파일을 HDFS에서 로컬 파일 시스템으로 다운로드하여 내용보기
+    TODO: 5. 최종결과 파일을 HDFS에서 로컬 파일 시스템으로 다운로드하여 내용보기 (i.e. hadoop fs -text /output/part-r-00000
  */
 public class WordCount {
 
@@ -68,10 +68,10 @@ public class WordCount {
         // An InputFormat for plain text files. Files are broken into lines. Either linefeed or carriage-return are used to signal end of line.
         // Keys are the position in the file, and values are the line of text..
         job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputFormatClass(TextOutputFormat.class);
+        job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        SequenceFileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         job.waitForCompletion(true);
     }
